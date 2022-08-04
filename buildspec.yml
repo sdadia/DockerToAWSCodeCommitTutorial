@@ -11,9 +11,8 @@ phases:
       - echo Building the Docker image...
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637994078207.dkr.ecr.ap-south-1.amazonaws.com
       - docker build -t dockerdemorepo .
-      # - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker tag dockerdemorepo:latest 637994078207.dkr.ecr.ap-south-1.amazonaws.com/dockerdemorepo:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag dockerdemorepo:latest 637994078207.dkr.ecr.ap-south-1.amazonaws.com/dockerdemorepo:latest
       - docker push 637994078207.dkr.ecr.ap-south-1.amazonaws.com/dockerdemorepo:latest
