@@ -1,14 +1,21 @@
 version: 0.2
 
 phases:
+  install:
+    commands:
+      # Update package managers
+      - sudo apt-get update
+      - pip install pytest
   pre_build:
    commands:
-     - echo Logging in to Amazon ECR...
-     - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637994078207.dkr.ecr.ap-south-1.amazonaws.com
+     - echo Running tests
+     - python -m pytest ./tests/
      - chmod +x ./Func1/build.sh
   build:
     commands:
       - echo Build started on `date`
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637994078207.dkr.ecr.ap-south-1.amazonaws.com
       - echo Building the Docker image...
       - cd Func1 ; ./build.sh $func1ECRRepo_URI
       - cd ..
