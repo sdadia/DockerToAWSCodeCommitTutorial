@@ -10,10 +10,9 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cd Func1 ; ./build.sh
+      - cd Func1 ; ./build.sh $func1ECRRepo_URI
       - cd ..
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker tag func1:latest $func1ECRRepo_URI:$version
-      - docker push 637994078207.dkr.ecr.ap-south-1.amazonaws.com/ecr-repo-stack-func1ecrrepo38a9a079-xg6kwj8qgtwj:latest
+      - docker push $func1ECRRepo_URI:1
