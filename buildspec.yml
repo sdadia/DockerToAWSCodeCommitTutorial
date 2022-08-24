@@ -3,9 +3,9 @@ version: 0.2
 phases:
   install:
     commands:
-      # Update package managers
-      - sudo apt update
-      - pip install pytest
+      - yum update -y
+      - yum install python-pip -y
+      - pip install pytest -y
   pre_build:
    commands:
      - echo Running tests
