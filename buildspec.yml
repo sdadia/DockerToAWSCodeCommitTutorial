@@ -5,14 +5,13 @@ phases:
    commands:
      - echo Logging in to Amazon ECR...
      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637994078207.dkr.ecr.ap-south-1.amazonaws.com
-  #     - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t firstfunc:1 .
-      - docker tag firstfunc:1 637994078207.dkr.ecr.ap-south-1.amazonaws.com/firstfunc:1
+      - docker build -t ecr-repo-stack-func1ecrrepo38a9a079-xg6kwj8qgtwj .
+      - docker tag ecr-repo-stack-func1ecrrepo38a9a079-xg6kwj8qgtwj:latest 637994078207.dkr.ecr.ap-south-1.amazonaws.com/ecr-repo-stack-func1ecrrepo38a9a079-xg6kwj8qgtwj:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push 637994078207.dkr.ecr.ap-south-1.amazonaws.com/firstfunc:1
+      - docker push 637994078207.dkr.ecr.ap-south-1.amazonaws.com/ecr-repo-stack-func1ecrrepo38a9a079-xg6kwj8qgtwj:latest
