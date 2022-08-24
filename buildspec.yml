@@ -4,12 +4,12 @@ phases:
   install:
     commands:
       - yum update -y
-      - yum install python-pip -y
-      - pip install pytest -y
+      - yum install python3-pip -y
+      - python3 -m pip install pytest
   pre_build:
    commands:
      - echo Running tests
-     - python -m pytest ./tests/
+     - python3 -m pytest ./tests/
      - chmod +x ./Func1/build.sh
   build:
     commands:
