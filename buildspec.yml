@@ -5,6 +5,7 @@ phases:
    commands:
      - echo Logging in to Amazon ECR...
      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 637994078207.dkr.ecr.ap-south-1.amazonaws.com
+     - chmod +x ./Func1/build.sh
   build:
     commands:
       - echo Build started on `date`
